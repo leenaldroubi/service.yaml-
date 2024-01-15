@@ -1,0 +1,25 @@
+version: '3.4'
+services:
+drupal:
+image: 30720132
+ports:
+- "8080:8080"
+volumes:
+db:
+image: final
+environment:
+
+volumes:
+- db_data:/bitnami/mariadb
+webserver:
+image: nginx
+ports:
+- "80:80"
+volumes:
+- ./certbot_data:/var/www/html
+depends_on:
+- webserver
+volumes:
+drupal_data:
+db_data:
+certbot_data:
